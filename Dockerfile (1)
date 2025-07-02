@@ -1,0 +1,18 @@
+# frontend/Dockerfile
+
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+
+# Add OpenSSL compatibility fix
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
